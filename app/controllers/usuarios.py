@@ -19,8 +19,8 @@ class UsuariosController:
         return {'message': 'Usuario creado con exito'}, 200
     
     @classmethod
-    def get_usuario(cls, id_satus):
-        usuario = Usuarios(id_satus=id_satus)
+    def get_usuario(cls, id_status):
+        usuario = Usuarios(id_status=id_status)
         result = Usuarios.get(usuario)
         if result is not None:
             return result.serialize(), 20
