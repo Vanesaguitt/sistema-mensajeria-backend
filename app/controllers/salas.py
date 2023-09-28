@@ -1,5 +1,5 @@
 from ..models.salas_model import Salas
-from database import DatabaseConnection
+
 from flask import request
 
 class SalasController:

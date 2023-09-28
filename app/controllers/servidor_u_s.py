@@ -1,5 +1,5 @@
 from ..models.servidor_u_s_model import Servidor
-from database import DatabaseConnection
+
 from flask import request
 
 class ServidorController:

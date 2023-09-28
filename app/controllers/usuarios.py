@@ -7,7 +7,7 @@ class UsuariosController:
     def create_usuarios(cls):
         usuario_data = request.json
         usuario = Usuarios(
-            usuario = usuario_data.get('usuari'),
+            usuario = usuario_data.get('usuario'),
             nombre_apellido = usuario_data.get('nombre_apellido'),
             email = usuario_data.get('email'),
             fecha_nacimiento= usuario_data.get('fecha_nacimiento'),

@@ -1,19 +1,18 @@
-from ..models.mensajes_chat_model import Mensajes
-from database import DatabaseConnection
+from ..models.mensajes_chat_model import Mensaje
 from flask import request
 
 class MensajesController:
     @classmethod
     def create_mensaje_chat(cls):
         mensaje_data = request.json
-        mensaje = Mensajes(
+        mensaje = Mensaje(
             id_mensajes_chat = mensaje_data.get('id_mensajes_chat'),
             mensaje = mensaje_data.get('mensaje'),
             usuario = mensaje_data.get('usuario'),
             id_salas = mensaje_data.get('id_salas')
         )
         
-        Mensajes.create(mensaje)
+        Mensaje.create(mensaje)
         return {'message': 'Mensaje creado con exito'}, 200
     
     @classmethod
@@ -21,7 +20,7 @@ class MensajesController:
         mensaje = mensaje(id_mensajes_chat=id_mensajes_chat)
         result = mensaje.get(mensaje)
         if result is not None:
-            return result.serialize(), 20
+           return result.serialize(), 20
         
     @classmethod
     def get_mensajes_chats(cls):
