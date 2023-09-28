@@ -34,12 +34,12 @@ class ServidorController:
         servidor_data = request.json
         query= "UPDATE app_discord SET nombre_servidor = %s WHERE servidor_u_s.id servidor_u_s = %s;"
         params = request.args.get('nombre_servidor'), id_servidor_u_s
-        DatabaseConnection.execute_query(query, params)
+    
         return {"msg": "Datos del nombre de servidor ha sido actualizados con éxito"}, 200
     @classmethod
     def delete_servidor(id_servidor_u_s):
         query= "DELETE FROM app_discord WHERE servidor_u_s.id_servidor_u_s = %s;"
         params = id_servidor_u_s,
-        DatabaseConnection.execute_query(query, params)
+        
  
         return {"msg": "El Servidor eliminado con éxito"}, 204

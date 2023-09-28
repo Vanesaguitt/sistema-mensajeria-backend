@@ -35,13 +35,13 @@ class MensajesController:
         mensaje_data = request.json
         query= "UPDATE app_discord SET mensaje = %s WHERE mensajes_chat.id_mensajes_chat = %s;"
         params = request.args.get('mensaje'), id_mensajes_chat
-        DatabaseConnection.execute_query(query, params)
+        
         return {"msg": "Datos del mensaje ha actualizados con éxito"}, 200
     @classmethod
     def delete_mensaje_chat(id_mensajes_chat):
         query= "DELETE FROM app_discord WHERE mensajes_chat.id_mensajes_chat = %s;"
         params = id_mensajes_chat,
-        DatabaseConnection.execute_query(query, params)
+        
  
         return {"msg": "El mensaje ha sido eliminado con éxito"}, 204
 

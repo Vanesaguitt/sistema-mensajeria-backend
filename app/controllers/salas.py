@@ -36,12 +36,11 @@ class SalasController:
         sala_data = request.json
         query= "UPDATE app_discord SET nombre_sala = %s WHERE salas.id_salas = %s;"
         params = request.args.get('usuario'), id_salas
-        DatabaseConnection.execute_query(query, params)
+        
         return {"msg": "Datos del nombre de sala actualizados con éxito"}, 200
     @classmethod
     def delete_sala(id_salas):
         query= "DELETE FROM app_discord WHERE salas.id_salas = %s;"
         params = id_salas,
-        DatabaseConnection.execute_query(query, params)
  
         return {"msg": "Sala eliminado con éxito"}, 204
