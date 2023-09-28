@@ -1,5 +1,5 @@
-from ..models.usuarios_model import Usuarios
-from database import DatabaseConnection
+#from ..models.usuarios_model import Usuarios
+from ..database import DatabaseConnection
 from flask import request
 
 class UsuariosController:

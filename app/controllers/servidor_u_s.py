@@ -1,4 +1,6 @@
-#from ..models.servidor_u_s_model import Servidor
+from ..models.servidor_u_s_model import Servidor
+from ..models.salas_model import Salas
+
 from ..database import DatabaseConnection
 from flask import request
 
@@ -22,14 +24,14 @@ class ServidorController:
             return result.serialize(), 20
         
     @classmethod
-    def get_salas(cls, server_id):
-        """
-        servidor_objects = Servidor.get_all()
-        servidores = []
-        for servidor in servidor_objects:
-            servidor.append(servidor.serialize())
-        return servidores, 200
-        """
+    def get_salas_by_server(cls, server_name):
+
+        salas_objects = Salas.get_by_server(server_name)
+        if salas_objects is not None:
+            salas = [str(sala) for sala in salas_objects]
+            
+        return salas, 200
+        
     
     @classmethod
     def update_servidor(cls, id_servidor_u_s):
