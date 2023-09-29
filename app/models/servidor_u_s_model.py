@@ -21,15 +21,15 @@ class Servidor:
         return servidor
     
     @classmethod
-    def create(cls, servidor, nombre_servidor):
+    def create(cls, nombre_servidor):
         
-        query = """INSERT INTO `app_discord`.`servidor_u_s` (`nombre_servidor`) VALUES (%s);"""
+        query = """INSERT INTO app_discord.servidor_u_s (`nombre_servidor`) VALUES (%s);"""
         params = (nombre_servidor)
         
         DatabaseConnection.execute_query(query, params=params)
     
     @classmethod
-    def delete(cls, servidor, nombre_servidor):
+    def delete(cls, nombre_servidor):
        
         query = "DELETE FROM app_discord.servidro_u_s WHERE id_servidor_u_S = %s"
         params = (nombre_servidor)

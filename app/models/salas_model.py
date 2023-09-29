@@ -24,7 +24,7 @@ class Salas:
     @classmethod
     def create(cls, salas, nombre_sala, usuario_adm):
         
-        query = """INSERT INTO `app_discord`.`salas` (`nombre_sala`, `usuario_adm`) VALUES (%s, %s, %s);"""
+        query = """INSERT INTO app_discord.salas (`nombre_sala`, `usuario_adm`) VALUES (%s, %s, %s);"""
         params = (salas , nombre_sala, usuario_adm)
         
         DatabaseConnection.execute_query(query, params=params)

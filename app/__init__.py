@@ -26,6 +26,6 @@ def init_app():
     app.register_blueprint(salas_bp, url_prefix = '/salas')
     app.register_blueprint(servidor_u_s_bp, url_prefix = '/servidores')
     
-    app.register_blueprint(errors)
+    
 
     return app

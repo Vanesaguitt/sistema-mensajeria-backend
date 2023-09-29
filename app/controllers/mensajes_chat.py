@@ -15,12 +15,12 @@ class MensajesController:
         Mensaje.create(mensaje)
         return {'message': 'Mensaje creado con exito'}, 200
     
-    @classmethod
-    def get_mensaje_chat(cls, id_mensajes_chat):
-        mensaje = mensaje(id_mensajes_chat=id_mensajes_chat)
-        result = mensaje.get(mensaje)
-        if result is not None:
-           return result.serialize(), 20
+    #@classmethod
+    #def get_mensaje_chat(cls, id_mensajes_chat):
+    #    mensaje = mensaje(id_mensajes_chat=id_mensajes_chat)
+    #    result = mensaje.get(mensaje)
+    #    if result is not None:
+    #       return result.serialize(), 20
         
     @classmethod
     def get_mensajes_chats(cls):

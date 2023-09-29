@@ -25,7 +25,7 @@ class Mensaje:
     @classmethod
     def create(cls, mensajes_chat, usuario, id_salas):
         
-        query = """INSERT INTO `app_discord`.`mensajes_chat` (`mensaje`, `usuario`, `id_salas`)
+        query = """INSERT INTO app_discord.mensajes_chat (`mensaje`, `usuario`, `id_salas`)
         VALUES (%s, %s, %s);"""
         params = (mensajes_chat, usuario, id_salas)
         
@@ -36,5 +36,6 @@ class Mensaje:
        
         query = "DELETE FROM app_discord.mensajes_chat WHERE id_mensajes_chat = %s"
         params = (mensajes_chat, usuario, id_salas)
+        
         DatabaseConnection.execute_query(query, params=params)
         
