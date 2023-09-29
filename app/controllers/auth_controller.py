@@ -56,7 +56,14 @@ class UserController:
             apellido = request.form['apellido']
             email = request.form['email']
             contrasena = request.form['contrasena']
-            User.regist(usuario,contrasena,email,nombre,apellido)
+            fecha_nacimiento = request.form['nacimiento']
+            
+            
+            """def formatofecha(fecha):
+                parfecha = fecha.split('-')
+                return '{}-{}-{}'.format(parfecha[2], parfecha[1], parfecha[0])"""
+            
+            User.regist(usuario,contrasena,email,nombre,apellido,fecha_nacimiento)
             
             return render_template('/login.html'), 200
         else:
@@ -72,4 +79,33 @@ class UserController:
         if result is None:
             raise UserNotFound(usuario)
 
+<<<<<<< Updated upstream
         return result.serialize(), 200
+=======
+        return result.serialize(), 200
+    
+    @classmethod
+    def leerusuario(cls, cookie):
+        
+        result=User.readperfil(cookie)
+        
+
+        return render_template("profile.html", cuenta=result)
+    
+    
+    @classmethod
+    def mainserver(cls):
+        return render_template('/main_page.html')
+
+        
+        
+    
+    
+    
+    
+    
+
+        
+        
+        
+>>>>>>> Stashed changes

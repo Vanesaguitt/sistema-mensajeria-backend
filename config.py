@@ -12,5 +12,13 @@ class Config:
     DATABASE_HOST = config['DATABASE_HOST']
     DATABASE_PORT = config['DATABASE_PORT']
 
+<<<<<<< Updated upstream
     TEMPLATE_FOLDER = "../../sistema-mensajeria-frontend/template"
     STATIC_FOLDER = "../../sistema-mensajeria-frontend/static"
+=======
+    TEMPLATE_FOLDER = "../../frontend/template"
+    STATIC_FOLDER = "../../frontend/static"
+    
+    
+    
+>>>>>>> Stashed changes

@@ -53,9 +53,9 @@ class User:
         return None
     
     @classmethod
-    def regist(cls,username,password,email,first_name,last_name):
-        query = """INSERT INTO app_discord.usuarios (usuario, nombre, apellido, email, contrasena) VALUES (%s, %s, %s, %s, %s);"""
-        params = username,first_name,last_name,email,password,
+    def regist(cls,username,password,email,first_name,last_name,fecha_nacimiento):
+        query = """INSERT INTO app_discord.usuarios (usuario, nombre, apellido, email, contrasena, fecha_nacimiento) VALUES (%s, %s, %s, %s, %s, %s);"""
+        params = username,first_name,last_name,email,password,fecha_nacimiento,
         DatabaseConnection.execute_query(query, params=params)
         
         
@@ -89,4 +89,20 @@ class User:
 
         if result is not None:
             return cls(*result)
+<<<<<<< Updated upstream
         return None
+=======
+        return None
+    
+    @classmethod
+    def readperfil(cls, usuario):
+        uss=[]
+        uss.append(usuario)
+        query = """SELECT usuario, nombre, apellido, email, contrasena, fecha_nacimiento FROM app_discord.usuarios WHERE usuario = %s"""
+        params = uss
+        result = DatabaseConnection.fetch_one(query, params=params)
+
+        if result is not None:
+            return result
+        return None
+>>>>>>> Stashed changes
