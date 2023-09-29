@@ -1,14 +1,29 @@
-from database import DatabaseConnection
+from ..database import DatabaseConnection
 
 class Mensajes:
     """Film model class"""
 
-    def __init__(self, id_mensaje_chat = None, mensaje = None, usuario = None, id_salas = None):
+    def __init__(self, mensaje = None, usuario = None, id_salas = None, id_mensaje_chat = None):
         """Constructor method"""
         self.id_mensaje_chat = id_mensaje_chat
         self.mensaje = mensaje
         self.usuario = usuario
-        self.id_salas = id_salas
+        if type(id_salas) is str:
+            print("___________________________________________________")
+            print("ENTRE AL IF")
+            self.id_salas = self.get_sala_id(id_salas)
+        else:
+            self.id_salas = id_salas
+
+
+    def get_sala_id(self, sala):
+
+        query = "SELECT id_salas FROM app_discord.salas WHERE nombre_sala = %s"
+        params = (sala,)
+        result = DatabaseConnection.fetch_one(query=query, params=params)
+        
+        return result[0]
+
         
     @classmethod
     def get_mensaje(cls, mensaje):
@@ -22,35 +37,42 @@ class Mensajes:
                 id_mensaje_chat = mensaje.id_mensaje_chat,
                 mensaje = result[1],
                 usuario = result[2],
-                ld_salas = result[3]
+                id_salas = result[3]
         )
         else:
             return None
     
     @classmethod
-    def get_mensajes(cls):
+    def get_by_sala(cls, sala):
        
-        query = """SELECT id_mensaje_chat, mensaje, usuario, id_salas FROM app_discord.mensajes_chat"""
-        results = DatabaseConnection.fetch_all(query)
+        query = """SELECT mensaje, usuario, id_salas FROM app_discord.mensajes_chat WHERE id_salas = (SELECT id_salas FROM app_discord.salas WHERE nombre_sala = %s)"""
+        params = (sala,)
+
+        results = DatabaseConnection.fetch_all(query=query, params=params)
 
         mensajes = []
         if results is not None:
             for result in results:
                 mensajes.append(cls(*result))
+
         return mensajes
     
-    @classmethod
-    def create_mensaje(cls, mensaje):
+    def serialize(self):
+        return {
+            "id_channel": self.id_salas,
+            "message": self.mensaje,
+            "user": self.usuario
+        }
         
-        query = """INSERT INTO app_discord.mensajes_chat (mensaje, usuario) VALUES (%s, %s)"""
-        params = (mensaje.mensaje, mensaje.usuario)
-        DatabaseConnection.execute_query(query, params)
-        
+
+
     @classmethod
-    def update_mensaje(cls, mensaje):
-        query = "UPDATE app_discord.mensajes_chat SET mensaje = %s WHERE mensae.id_mensajes_chat = %s;"      
-        DatabaseConnection.execute_query(query, mensaje)
-    
+    def create(cls, mensaje):
+        
+        query = """INSERT INTO app_discord.mensajes_chat (mensaje, usuario, id_salas) VALUES (%s, %s, %s)"""
+        params = (mensaje.mensaje, mensaje.usuario, mensaje.id_salas)
+        DatabaseConnection.execute_query(query=query, params=params)
+
     @classmethod
     def delete_mensaje(cls, mensaje):
         query = "DELETE FROM app_discord.mensajes_chat WHERE id_mensajes_chat = %s"
