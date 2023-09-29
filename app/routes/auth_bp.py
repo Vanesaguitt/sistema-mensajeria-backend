@@ -8,6 +8,8 @@ auth_bp.route('/login', methods=['POST'])(UserController.login)
 auth_bp.route('/logren', methods=['GET'])(UserController.logren)
 auth_bp.route('/')(UserController.inicio)
 auth_bp.route('/formulario', methods=['POST', 'GET'])(UserController.formulario)
-auth_bp.route('/profile', methods=['GET'])(UserController.show_profile)
+
+
 auth_bp.route('/logout', methods=['GET'])(UserController.logout)
+auth_bp.route('/profile', methods=['GET'])(UserController.show_profile)
 

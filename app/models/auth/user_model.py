@@ -11,8 +11,6 @@ class User:
         self.email = kwargs.get("email")
         self.first_name = kwargs.get("first_name")
         self.last_name = kwargs.get("last_name")
-        self.date_of_birth = kwargs.get("date_of_birth")
-        self.status_id = kwargs.get("status_id")
         self.role_id = kwargs.get("role_id")
 
     def serialize(self):
