@@ -2,7 +2,7 @@ from ..models.servidor_u_s_model import Servidor
 from ..models.salas_model import Salas
 
 from ..database import DatabaseConnection
-from flask import request
+from flask import request, jsonify
 
 class ServidorController:
     @classmethod
@@ -28,9 +28,11 @@ class ServidorController:
 
         salas_objects = Salas.get_by_server(server_name)
         if salas_objects is not None:
-            salas = [str(sala) for sala in salas_objects]
-            
-        return salas, 200
+            salas = []
+            for sala in salas_objects:
+                salas.append(sala.serialize())
+                
+        return jsonify(salas), 200
         
     
     @classmethod
